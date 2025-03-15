@@ -1,0 +1,23 @@
+meta {
+  name: LOGIN
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:5000/api/admin/login
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "email": "Segunadekunleco@yahoo.com",
+      "password": "Kikinioluwa16"
+  }
+  
+}

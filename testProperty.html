@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Property Upload</title>
+</head>
+<body>
+    <h2>Upload Property</h2>
+    
+    <form id="propertyForm">
+        <label>Title:</label>
+        <input type="text" name="title" required><br><br>
+
+        <label>Price:</label>
+        <input type="number" name="price" required><br><br>
+
+        <label>Location:</label>
+        <input type="text" name="location" required><br><br>
+
+        <label>Description:</label>
+        <textarea name="description" required></textarea><br><br>
+
+        <label>Type:</label>
+        <input type="text" name="type" required><br><br>
+
+        <label>Status:</label>
+        <input type="text" name="status" required><br><br>
+
+        <label>Amenities (comma-separated):</label>
+        <input type="text" name="amenities"><br><br>
+
+        <label>Geolocation (JSON format):</label>
+        <input type="text" name="geolocation" placeholder='{"lat":6.5244,"lng":3.3792}' required><br><br>
+
+        <label>Images:</label>
+        <input type="file" name="images" multiple accept="image/*"><br><br>
+
+        <button type="submit">Upload Property</button>
+    </form>
+
+    <h3 id="response"></h3>
+
+    <script>
+        document.getElementById("propertyForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Yzk2YzBkYTUwZDQzOTUxZWRlMjFkYiIsImlhdCI6MTc0MTI1ODEyOSwiZXhwIjoxNzQxMjYxNzI5fQ.bjtHLlE0XFvZijxDrKqe0eFmfXtqlALFoohAFO1kpRk"; // Replace with a valid token
+
+            try {
+                const response = await fetch("http://localhost:5000/api/properties/", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: formData
+                });
+
+                const result = await response.json();
+                document.getElementById("response").innerText = JSON.stringify(result, null, 2);
+
+                console.log("✅ Server Response:", result);
+            } catch (error) {
+                console.error("❌ Error:", error);
+                document.getElementById("response").innerText = "Failed to upload property.";
+            }
+        });
+    </script>
+</body>
+</html>

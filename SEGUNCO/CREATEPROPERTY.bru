@@ -1,0 +1,42 @@
+meta {
+  name: CREATEPROPERTY
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:5000/api/properties
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Yzk2YzBkYTUwZDQzOTUxZWRlMjFkYiIsImlhdCI6MTc0MTI1Mzk2NSwiZXhwIjoxNzQxMjU3NTY1fQ.HmFLEmn0VS60oozPYtbXRQ4iGDkUHV0Eigei-ZWZANs
+  Content-Type: application/json
+}
+
+body:json {
+  {
+     "title": "Modern Apartment",
+     "price": 150000,
+     "location": "Lagos, Nigeria",
+     "description": "A lovely 2-bedroom apartment in a serene environment.",
+     "type": "Apartment",
+     "size": 120,
+     "bedrooms": 2,
+     "bathrooms": 2,
+     "parkingSpaces": 1,
+     "yearBuilt": 2020,
+     "status": "For Sale",
+     "images": ["https://example.com/image1.jpg"],
+     "amenities": ["Pool", "Gym"],
+     "geolocation": { "lat": 6.5244, "lng": 3.3792 }
+  }
+  
+}
+
+body:multipart-form {
+  title: "Luxury Apartment"
+  price: 500000
+  images: @file(C:\Users\user\Downloads\Time_and_Peace_Cover.jpeg)
+}
