@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Segun Adekunle & Company</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ff5a5f;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e0484f;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: calc(100% - 60px);
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 70vh;
+            background: url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* About Section */
+        .about {
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            text-align: left;
+        }
+
+        /* Vision & Mission */
+        .vision-mission {
+            text-align: center;
+        }
+
+        .vision-mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .vision-mission-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .vision-mission-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .vision-mission-card h3 {
+            margin-top: 0;
+            color: #ff5a5f;
+            font-size: 22px;
+        }
+
+        .vision-mission-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #ff5a5f;
+        }
+
+        /* Experience Section */
+        .experience {
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .experience p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            text-align: left;
+        }
+
+/* Clients Section */
+.clients {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.client-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.client-logo {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 160px; /* Fixed height for uniformity */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    overflow: hidden; /* Prevents content overflow */
+}
+
+.client-logo:hover {
+    transform: translateY(-5px);
+}
+
+.client-logo .logo-container {
+    width: 120px; /* Fixed width for all logo containers */
+    height: 80px; /* Fixed height for all logo containers */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.client-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Maintains aspect ratio while fitting in container */
+}
+
+.client-logo p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    max-width: 90%; /* Prevents text from overflowing */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Shows ellipsis for overflowing text */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limits text to 2 lines */
+    -webkit-box-orient: vertical;
+}
+        /* Quality Assurance */
+        .quality {
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .quality p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            text-align: left;
+        }
+
+        /* Social Responsibility */
+        .social-responsibility {
+            text-align: center;
+        }
+
+        .social-responsibility p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            text-align: left;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Counter Section */
+        .counter-section {
+            background-color: #ff5a5f;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .counter-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .counter-item {
+            padding: 20px;
+            margin: 10px;
+            min-width: 200px;
+        }
+
+        .counter-value {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .counter-label {
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+/* Team Section */
+.team {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+}
+
+.team h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.team > .container > p {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 40px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.team-member {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.member-image {
+    width: 100%;
+    position: relative;
+    padding-bottom: 100%; /* This creates a square aspect ratio */
+    overflow: hidden;
+}
+
+.member-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover .member-image img {
+    transform: scale(1.05);
+}
+
+.member-info {
+    padding: 25px;
+}
+
+.member-info h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 22px;
+}
+
+.member-title {
+    color: #ff5a5f;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.member-info p {
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+/* Responsive styling */
+@media (min-width: 768px) {
+    .team-member {
+        flex-direction: row;
+        align-items: stretch;
+    }
+    
+    .member-image {
+        width: 30%;
+        padding-bottom: 0; /* Remove the aspect ratio constraint */
+        height: auto;
+    }
+    
+    .member-info {
+        width: 70%;
+    }
+    
+    .member-image img {
+        position: relative; /* Reset from absolute positioning */
+        height: 100%;
+    }
+}
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .client-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .member-image {
+        height: 0;
+        padding-bottom: 75%; /* Adjust to show more of the image (3:4 ratio) */
+    }
+    
+    .client-logo {
+        height: 140px;
+        padding: 15px;
+    }
+       .client-logo .logo-container {
+        width: 100px;
+        height: 60px;
+    }
+
+            .navbar {
+                width: calc(100% - 30px);
+                padding: 15px 15px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #333;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+                font-size: 24px;
+                cursor: pointer;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">SegunAdekunleCo</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AboutUs.html">About Us</a></li>
+            <li><a href="Services.html">Services</a></li>
+            <li><a href="Properties.html">Properties</a></li>
+            <!-- <li><a href="#">Contact</a></li> -->
+        </ul>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>About Segun Adekunle & Company</h1>
+            <p>A well-established firm of Estate Surveyors and Valuers in Nigeria</p>
+            <a href="#contact" class="btn">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>OUR FIRM</h2>
+            <p>Messrs SEGUN ADEKUNLE & COMPANY is a well-established firm of Estate Surveyors and Valuers in Nigeria. The company was registered in 2002, with the Corporate Affairs Commission (CAC) with RC. No. LAZ. 131623 and granted a certificate of compliance by the Estate Surveyors and Valuers Registration Board of Nigeria (ESVARBON), allowing them to practice the profession of Estate Surveying and Valuation Nationwide. Our firm is tax compliant with tax Identification number (TIN): 18885864-0001.</p>
+        </div>
+    </section>
+
+    <!-- Vision & Mission Section -->
+    <section class="vision-mission">
+        <div class="container">
+            <div class="vision-mission-grid">
+                <div class="vision-mission-card">
+                    <div class="vision-mission-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>OUR VISION</h3>
+                    <p>At SEGUN ADEKUNLE & COMPANY, our vision is to be a leader in the profession of Estate Surveying and Valuation. We strive to be the preferred choice in the provision of market-leading valuation and comprehensive real estate consultancy services by consistently delivering innovative solutions and exceptional customer service.</p>
+                </div>
+                <div class="vision-mission-card">
+                    <div class="vision-mission-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>CORPORATE MISSION</h3>
+                    <p>Our mission is to be known for Honesty in Rendering High Quality Real Estate Service that surpasses our client's expectations through our expertise, professionalism, and integrity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counter Section -->
+    <section class="counter-section">
+        <div class="counter-container">
+            <div class="counter-item">
+                <div class="counter-value" id="years-counter">20+</div>
+                <div class="counter-label">Years of Experience</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-value" id="projects-counter">500+</div>
+                <div class="counter-label">Projects Completed</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-value" id="clients-counter">100+</div>
+                <div class="counter-label">Satisfied Clients</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-value" id="team-counter">10+</div>
+                <div class="counter-label">Team Members</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2>EXPERIENCE</h2>
+            <p>Segun Adekunle & Co. is organized with a comprehensive database and qualified team experienced in the valuation of billions of Naira worth of assets - and with our support team we are able to handle any job: whether a single building or thousands of building units, special purpose properties as well as the entire assets of an organization.</p>
+            <p>Our Principal Partner with his wealth of experience has been involved in Real Estate Services especially with Asset Valuation services since 1994 and our firm since its inception. This is evidenced by the impressive numbers of Valuation assignments we have carried out all over the country. The list of some establishments which we have rendered Asset Valuation services are itemized under our clientele.</p>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+ <!-- Clients Section -->
+<!-- Clients Section -->
+<section class="clients" id="clients">
+    <div class="container">
+        <h2>CLIENTELE</h2>
+        <p>Over the years, we have built a strong and loyal client base that includes:</p>
+        <div class="client-grid">
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="freisland.png" alt="FrieslandCampina WAMCO Nigeria Plc Logo">
+                </div>
+                <p>FrieslandCampina WAMCO Nigeria Plc</p>
+            </div>
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="rite foods.png" alt="Rite Foods Limited Logo">
+                </div>
+                <p>Rite Foods Limited</p>
+            </div>
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="rostrum.jpg" alt="Rostrum Investment Security Limited Logo">
+                </div>
+                <p>Rostrum Investment Security Limited</p>
+            </div>
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="logo-guinness.svg" alt="Management Staff Association Guinness Nig Plc Logo">
+                </div>
+                <p>Management Staff Association Guinness Nig Plc</p>
+            </div>
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="afyacare_logo.jpg" alt="Afyacare Nigeria Limited Logo">
+                </div>
+                <p>Afyacare Nigeria Limited</p>
+            </div>
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="BRENT.jpg" alt="Brent Mortgage Bank Logo">
+                </div>
+                <p>Brent Mortgage Bank</p>
+            </div>
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="TrustBanc.png" alt="Trustbanc Financial Group Logo">
+                </div>
+                <p>Trustbanc Financial Group</p>
+            </div>
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="ADENIYI COKER.jpg" alt="Adeniyi Coker Architect Ltd Logo">
+                </div>
+                <p>Adeniyi Coker Architect Ltd</p>
+            </div>
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="GLOBALS23.png" alt="Global Process Pipeline & Services Limited Logo">
+                </div>
+                <p>Global Process Pipeline & Services Limited</p>
+            </div>
+            <!-- <div class="client-logo">
+                <div class="logo-container">
+                    <img src="/api/placeholder/150/80" alt="PUO Ventures Capital Limited Logo">
+                </div>
+                <p>PUO Ventures Capital Limited</p>
+            </div> -->
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="home-options-logo.jpg" alt="Home Options Logo">
+                </div>
+                <p>Home Options</p>
+            </div>
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="ORITSEFEMI.jpg" alt="Oritsetimeyin Logistics Ltd Logo">
+                </div>
+                <p>Oritsetimeyin Logistics Ltd</p>
+            </div>
+            <!-- <div class="client-logo">
+                <div class="logo-container">
+                    <img src="/api/placeholder/150/80" alt="West African Portland Cement Logo">
+                </div>
+                <p>West African Portland Cement</p>
+            </div> -->
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="HALLBURTON.png" alt="Halliburton Energy Services Logo">
+                </div>
+                <p>Halliburton Energy Services</p>
+            </div>
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="STERLIN BANK.png" alt="Sterling Bank Plc Logo">
+                </div>
+                <p>Sterling Bank Plc</p>
+            </div>
+            <div class="client-logo">
+                <div class="logo-container">
+                    <img src="Stanbic_IBTC_Holdings_Logo.png" alt="Stanbic IBTC Bank Logo">
+                </div>
+                <p>Stanbic IBTC Bank</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Quality Assurance Section -->
+    <section class="quality" id="quality">
+        <div class="container">
+            <h2>QUALITY ASSURANCE</h2>
+            <p>At Segun Adekunle & Company, we maintain rigorous quality control processes to ensure that our services meet and exceed industry standards. Our quality assurance program includes:</p>
+            <p>Regular peer reviews of valuation reports, continuous professional development for all team members, strict adherence to national and international valuation standards, and implementation of a comprehensive quality management system that guides our operations from client engagement through to project completion.</p>
+            <p>Our commitment to quality has earned us recognition within the industry and the trust of our diverse clientele. We continuously evaluate and improve our processes to deliver exceptional service in every project we undertake.</p>
+        </div>
+    </section>
+
+    <!-- Social Responsibility Section -->
+    <section class="social-responsibility" id="social-responsibility">
+        <div class="container">
+            <h2>SOCIAL RESPONSIBILITY</h2>
+           <p>As a responsible corporate citizen, we are committed to making a positive impact on society and
+            the environment</p>
+            <p>Through these efforts, we aim to make a meaningful difference in the communities where we operate while promoting sustainable real estate practices throughout Nigeria.</p>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <div class="container">
+            <h2>OUR TEAM</h2>
+            <p>Our greatest asset as a firm is Our Staff. We are blessed with competent and experienced professional staffs from diverse but cognate disciplines led by management team with a vast wealth of experience in all aspects of Real Estate Surveying and Valuation practice. Our unbeatable professionalism in the conduct of business is a result of the pool of professionally experienced Estate Surveyors & Valuers, Quantity Surveyors, Lawyers, and Managers that make up our team.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="./IMAGES/WhatsApp Image 2025-03-16 at 11.29.46_e6f0fbf0.jpg" alt="Mr. Segun Adekunle">
+                    </div>
+                    <div class="member-info">
+                        <h3>MR. SEGUN ADEKUNLE</h3>
+                        <p class="member-title">B.Sc., MSC. ANIVS, RSV</p>
+                        <p>He is the principal partner of the firm. A graduate of Estate Management from Obafemi Awolowo University, Ile Ife, Osun State and an associate member of the Nigeria Institution of Estate Surveyors & Valuers. He has been in practice for about a decade; he was an associate partner of Messrs Jide Taiwo & Co. before establishing his professional practice in 2002. His areas of specialization are valuation, project management and Real Estate Agency. Aside his varying experience in all aspect of Estate Management he holds a postgraduate Diploma in Banking and Finance from Bayero University, Kano. He has attended several courses and seminars on professional practice.</p>
+                    </div>
+                </div>
+    
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/api/placeholder/250/250" alt="Mr. Tunde Yusuf">
+                    </div>
+                    <div class="member-info">
+                        <h3>MR. TUNDE YUSUF</h3>
+                        <p class="member-title">B.Sc., ANIVS, RSV</p>
+                        <p>He is the partner in charge of Abuja Branch. A graduate of Estate Management from Obafemi Awolowo University, Ile Ife, Osun State and an associate member of the Nigeria Institution of Estate Surveyors & Valuers. He has been in practice for about a decade; he was an associate partner Messrs Jide Taiwo & Co. before joining our firm in 2004.</p>
+                    </div>
+                </div>
+    
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/api/placeholder/250/250" alt="Mr. Funso Adese">
+                    </div>
+                    <div class="member-info">
+                        <h3>MR. FUNSO ADESE</h3>
+                        <p class="member-title">B.Tech., ANIVS, RSV</p>
+                        <p>He is a seasoned surveyor and a member of the Nigerian Institution of Estate Surveyors and Valuers (NIESV). He is a graduate of Estate Management from the University of Technology, Akure. He also had a proficiency Certificate in management (NIM) in 2009. He bagged a United Nations Certificate in Public Private Partnership (PPP).</p>
+                    </div>
+                </div>
+    
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/api/placeholder/250/250" alt="Mr. Tobi Soniran">
+                    </div>
+                    <div class="member-info">
+                        <h3>MR. TOBI SONIRAN</h3>
+                        <p class="member-title">B.Sc., ANIVS, RSV</p>
+                        <p>He is a probationer member of the Nigerian Institution of Estate Surveyors and Valuers (NIESV). He is a graduate of Economics from the Olabisi Onabanjo University, Ago-Iwoye, Ogun State. He also had a proficiency Certificate in management (NIM) in 2010 and an Associate Member Institute of Strategic Management of Nigeria (ISMN).</p>
+                    </div>
+                </div>
+    
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/api/placeholder/250/250" alt="Mr. Tamunosaibibam Bristol">
+                    </div>
+                    <div class="member-info">
+                        <h3>MR. TAMUNOSAIBIBAM BRISTOL</h3>
+                        <p class="member-title">H.N.D.</p>
+                        <p>He is a graduate of Estate Management from the Waziri Umar Federal Polytechnic, Birnin-Kebbi, Kebbi-State. He also had a O.N.D in Statistics from Federal Polytechnic, Idah, Kogi-State.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+    <!-- <section class="contact" id="contact">
+        <div class="container">
+            <h2>CONTACT US</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="subject" placeholder="Subject">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>12 Adeyemo Alakija Street, Victoria Island, Lagos, Nigeria</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+234 803 123 4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@segunadekunle.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Segun Adekunle & Co.</h3>
+                    <p>A leading firm of Estate Surveyors and Valuers committed to excellence in real estate services across Nigeria.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="services.html#valuation">Property Valuation</a></li>
+                        <li><a href="services.html#management">Property Management</a></li>
+                        <li><a href="services.html#agency">Estate Agency</a></li>
+                        <li><a href="services.html#consultancy">Real Estate Consultancy</a></li>
+                        <li><a href="services.html#development">Property Development</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest updates and insights on Nigeria's real estate market.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Segun Adekunle & Company. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
