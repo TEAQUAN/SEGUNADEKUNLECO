@@ -65,7 +65,7 @@ if (req.files && req.files.length > 0) {
     }
 }
 console.log("Final image URLs:", imageUrls);
-        const { title, price, location, description, type, status, geolocation, amenities } = req.body;
+        const { title, price, location, description, type, status, geolocation, amenities,geoLocationLink } = req.body;
 
         // ✅ Parse geolocation (should be JSON)
         let parsedGeolocation = { lat: 0, lng: 0 };
@@ -87,6 +87,7 @@ console.log("Final image URLs:", imageUrls);
             location,
             description,
             type,
+            geoLocationLink,
             size: req.body.size || null,
             bedrooms: req.body.bedrooms || null,
             bathrooms: req.body.bathrooms || null,
@@ -144,9 +145,9 @@ exports.filterProperties = async (req, res) => {
     try {
         const filters = {};
 
-        // Text-based search (case-insensitive)
+        // Text-based search
         if (req.query.search) {
-            const regex = new RegExp(req.query.search, 'i'); // Case-insensitive search
+            const regex = new RegExp(req.query.search, 'i');
             filters.$or = [
                 { title: regex },
                 { location: regex },
@@ -155,11 +156,23 @@ exports.filterProperties = async (req, res) => {
             ];
         }
 
-        // Numeric filters (exact or range)
+        // Type (e.g., House, Apartment)
+        if (req.query.type) {
+            const types = req.query.type.split(',');
+            filters.type = types.length > 1 ? { $in: types } : types[0];
+        }
+
+        // Status (e.g., For Sale, For Rent)
+        if (req.query.status) {
+            const statuses = req.query.status.split(',');
+            filters.status = statuses.length > 1 ? { $in: statuses } : statuses[0];
+        }
+
+        // Price filters
         if (req.query.price) {
             const price = Number(req.query.price);
             if (!isNaN(price)) {
-                filters.price = price; // Exact match
+                filters.price = price;
             }
         }
 
@@ -169,28 +182,41 @@ exports.filterProperties = async (req, res) => {
             if (req.query.maxPrice) filters.price.$lte = Number(req.query.maxPrice);
         }
 
+    
+
+        // Bedrooms
         if (req.query.bedrooms) {
             filters.bedrooms = Number(req.query.bedrooms);
         }
 
+        // Bathrooms
         if (req.query.bathrooms) {
             filters.bathrooms = Number(req.query.bathrooms);
         }
 
+        // Parking spaces
         if (req.query.parkingSpaces) {
             filters.parkingSpaces = Number(req.query.parkingSpaces);
         }
 
+        // Year built
         if (req.query.yearBuilt) {
             filters.yearBuilt = Number(req.query.yearBuilt);
         }
 
-        console.log("Applied Filters:", filters); // Debugging
+        // Amenities (array contains any of the specified ones)
+        if (req.query.amenities) {
+            const amenitiesArray = req.query.amenities.split(',');
+            filters.amenities = { $in: amenitiesArray };
+        }
+
+        console.log("Applied Filters:", filters);
 
         const properties = await Property.find(filters);
         res.json({ properties });
 
     } catch (error) {
+        console.error("Filter Error:", error);
         res.status(500).json({ message: error.message });
     }
 };

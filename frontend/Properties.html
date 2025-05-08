@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SegunAdekunleCo - Find Your Dream Home</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <!-- Navbar -->
     <header>
         <nav class="navbar">
-            <div class="logo">SegunAdekunleCo</div>
+            <div class="logo">Segun Adekunle & Co.(SAC)</div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="AboutUs.html">About Us</a></li>
                 <li><a href="Services.html">Services</a></li>
                 <li><a href="Properties.html">Properties</a></li>
-                <!-- <li><a href="#">Contact</a></li> -->
+                <li><a href="contactUs.html">Contact</a></li>
             </ul>
             <div class="mobile-menu" id="mobile-menu">&#9776;</div>
         </nav>
@@ -36,14 +38,114 @@
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Search properties...">
         <button id="searchBtn">Search</button>
-
+        <button id="filterBtn" class="filter-btn">
+            <i class="fas fa-filter"></i> 
+            Filters
+        </button>
+        <div class="filter-dropdown" id="filterDropdown">
+            <!-- Close button -->
+            <div class="filter-close" id="filterClose">
+                <i class="fas fa-times"></i>
+            </div>
+            
+            <div class="filter-section">
+                <h4>Price Range</h4>
+                <div class="price-range">
+                    <input type="number" id="minPrice" placeholder="Min Price">
+                    <span>to</span>
+                    <input type="number" id="maxPrice" placeholder="Max Price">
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h4>Bedrooms</h4>
+                <select id="bedrooms">
+                    <option value="">Any</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            
+            <div class="filter-section">
+                <h4>Bathrooms</h4>
+                <select id="bathrooms">
+                    <option value="">Any</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                </select>
+            </div>
+            
+            <div class="filter-section">
+                <h4>Parking Spaces</h4>
+                <select id="parkingSpaces">
+                    <option value="">Any</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            
+            <div class="filter-section">
+                <h4>Property Type</h4>
+                <select id="propertyType">
+                    <option value="">Any</option>
+                    <option value="House">House</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Land">Land</option>
+                </select>
+            </div>
+            <div class="filter-section">
+                <h4>Status</h4>
+                <select id="status">
+                    <option value="">Any</option>
+                    <option value="For Sale">For Sale</option>
+                    <option value="For Rent">For Rent</option>
+                </select>
+            </div>
+            
+            <!-- <div class="filter-section">
+                <h4>Size (sqm)</h4>
+                <div class="price-range">
+                    <input type="number" id="minSize" placeholder="Min Size">
+                    <span>to</span>
+                    <input type="number" id="maxSize" placeholder="Max Size">
+                </div>
+            </div> -->
+            
+            <div class="filter-section">
+                <h4>Amenities</h4>
+                <label><input type="checkbox" value="pool" class="amenity"> Swimming Pool</label><br>
+                <label><input type="checkbox" value="AC" class="amenity"> AC</label><br>
+                <label><input type="checkbox" value="TV" class="amenity"> TV</label><br>
+            </div>
+            
+            <div class="filter-actions">
+                <button id="applyFilters">Apply Filters</button>
+                <button id="resetFilters">Reset</button>
+            </div>
+        </div>
     </div>
 
     <!-- Properties List -->
     <section class="property-listing">
         <div id="property-list"></div>
+        <div id="no-results" class="no-results" style="display: none;">
+            <h3>No properties match your filters</h3>
+            <p>Try adjusting your search criteria</p>
+        </div>
     </section>
 
     <script src="script.js"></script>
+    <script>
+        
+    </script>
 </body>
 </html>

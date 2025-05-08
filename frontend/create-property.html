@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Property</title>
+    <link rel="stylesheet" href="create-property.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">SegunAdekunleCo</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            </ul>
+        <div class="mobile-menu">☰</div>
+    </div>
+
+    <section class="create-property">
+        <div class="container">
+            <h2>Create New Property</h2>
+            <form id="createPropertyForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price (₦):</label>
+                    <input type="number" id="price" name="price" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <select id="type" name="type">
+                        <option value="House">House</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Land">Land</option>
+                        <option value="Commercial">Commercial</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select id="status" name="status">
+                        <option value="For Sale">For Sale</option>
+                        <option value="For Rent">For Rent</option>
+                        <option value="Sold">Sold</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="size">Size (sqm):</label>
+                    <input type="number" id="size" name="size" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="bedrooms">Bedrooms:</label>
+                    <input type="number" id="bedrooms" name="bedrooms" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="bathrooms">Bathrooms:</label>
+                    <input type="number" id="bathrooms" name="bathrooms" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="parkingSpaces">Parking Spaces:</label>
+                    <input type="number" id="parkingSpaces" name="parkingSpaces" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="yearBuilt">Year Built:</label>
+                    <input type="number" id="yearBuilt" name="yearBuilt">
+                </div>
+
+                <div class="form-group">
+                    <label for="amenities">Amenities (comma-separated):</label>
+                    <input type="text" id="amenities" name="amenities">
+                </div>
+
+                <div class="form-group">
+                    <label for="geolocation">Geolocation (JSON - e.g., {"lat": 6.5244, "lng": 3.3792}):</label>
+                    <input type="text" id="geolocation" name="geolocation">
+                </div>
+
+                <div class="form-group">
+                    <label for="images">Images:</label>
+                    <input type="file" id="images" name="images" multiple>
+                </div>
+
+                <button type="submit" class="btn">Create Property</button>
+                <div id="responseMessage" class="response"></div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            mobileMenu.addEventListener('click', function () {
+                navLinks.classList.toggle('active');
+            });
+
+            const form = document.getElementById('createPropertyForm');
+            const responseDiv = document.getElementById('responseMessage');
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+                const authToken = localStorage.getItem('authToken');
+
+                if (!authToken) {
+                    responseDiv.className = 'response error';
+                    responseDiv.textContent = 'No authentication token found. Please log in.';
+                    return; // Stop the submission
+                }
+
+                try {
+                    const response = await fetch('http://localhost:5000/api/properties', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`, // Include the token in the Authorization header
+                        },
+                        body: formData,
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        responseDiv.className = 'response success';
+                        responseDiv.textContent = data.message;
+                        form.reset();
+                    } else if (response.status === 401 || response.status === 403) {
+                        // Handle unauthorized or forbidden access
+                        responseDiv.className = 'response error';
+                        responseDiv.textContent = 'Authentication failed. Please log in again.';
+                        // Optionally, redirect to the login page
+                        // window.location.href = 'admin-login.html';
+                    } else {
+                        responseDiv.className = 'response error';
+                        responseDiv.textContent = data.message || 'Failed to create property.';
+                        if (data.stack) {
+                            console.error("Server Error:", data.stack);
+                        }
+                    }
+                } catch (error) {
+                    responseDiv.className = 'response error';
+                    responseDiv.textContent = 'Network error occurred.';
+                    console.error("Fetch Error:", error);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

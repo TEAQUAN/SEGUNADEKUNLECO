@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         `;
         
         const response = await fetch(`http://localhost:5000/api/properties/${propertyId}`);
-        
+    
         if (!response.ok) {
             throw new Error('Property not found');
         }
@@ -177,7 +177,29 @@ function displayPropertyDetails(property) {
         </div>
     </div>
     `;
-    
+    const whatsappMessage = `
+*${property.title}*
+📍 Location: ${property.location || "N/A"}
+💵 Price: ${formattedPrice}
+🛏 Bedrooms: ${property.bedrooms || 0}
+🛁 Bathrooms: ${property.bathrooms || 0}
+📐 Size: ${property.size ? property.size.toLocaleString() + ' Sq Ft' : 'N/A'}
+📄 Description: ${property.description || "N/A"}
+
+I'm interested in knowing more about this property.
+`.trim();
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const phoneNumber = "+2348138303649"; // Replace with your WhatsApp number
+    const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    html += `
+        <div class="whatsapp-contact">
+            <a href="${whatsappLink}" target="_blank" class="whatsapp-button">
+                Get to know more about this property
+            </a>
+        </div>
+    `;
     container.innerHTML = html;
     
     // Set up image navigation

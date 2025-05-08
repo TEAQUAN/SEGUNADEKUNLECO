@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="create-property.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">SegunAdekunleCo - Admin</div>
+        <ul class="nav-links">
+            </ul>
+        <div class="mobile-menu">☰</div>
+    </div>
+
+    <section class="admin-login">
+        <div class="container">
+            <h2>Admin Login</h2>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+                <div id="loginResponseMessage" class="response"></div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            mobileMenu.addEventListener('click', function () {
+                navLinks.classList.toggle('active');
+            });
+
+            const form = document.getElementById('adminLoginForm');
+            const responseDiv = document.getElementById('loginResponseMessage');
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+                const email = formData.get('email');
+                const password = formData.get('password');
+
+                try {
+                    const response = await fetch('http://localhost:5000/api/admin/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email, password }),
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.token) {
+                        responseDiv.className = 'response success';
+                        responseDiv.textContent = 'Login successful. Redirecting...';
+                        // Store the token in local storage
+                        localStorage.setItem('authToken', data.token);
+                        // Redirect to create-property.html
+                        window.location.href = 'create-property.html';
+                    } else {
+                        responseDiv.className = 'response error';
+                        responseDiv.textContent = data.message || 'Login failed.';
+                    }
+                } catch (error) {
+                    responseDiv.className = 'response error';
+                    responseDiv.textContent = 'Network error occurred.';
+                    console.error("Fetch Error:", error);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

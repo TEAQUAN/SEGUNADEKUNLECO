@@ -116,12 +116,15 @@ body {
 /* Property Listing */
 .property-listing {
     padding: 40px 20px;
+    
 }
 
 #property-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .property-card {
@@ -130,6 +133,9 @@ body {
     overflow: hidden;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    max-width: 350px; /* Set maximum width for each card */
+    margin: 0 auto; /* Center the card if it's alone */
+    width: 100%;
 }
 
 .property-card:hover {
@@ -162,13 +168,111 @@ body {
     font-weight: bold;
 }
 
+.no-results {
+    text-align: center;
+    padding: 40px;
+    grid-column: 1 / -1;
+}
+
+.no-results h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.no-results p {
+    color: #666;
+}
+
+/* Filter Button */
+.filter-btn {
+    padding: 12px 20px;
+    border: none;
+    background: #333;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-btn:hover {
+    background: #555;
+}
+
+/* Filter Dropdown */
+.filter-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 20px;
+    width: 300px;
+    display: none;
+    z-index: 100; /* Increased z-index to ensure it's above other elements */
+}
+
+.filter-dropdown.active {
+    display: block;
+}
+
+/* Close button for filter dropdown */
+.filter-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+}
+
+.filter-close:hover {
+    color: #000;
+}
+
+/* Filter dropdown header with spacing for close button */
+.filter-dropdown h4 {
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+/* First filter section needs extra top margin for close button */
+.filter-dropdown .filter-section:first-child {
+    margin-top: 10px;
+}
+
+/* Media queries for mobile */
+@media (max-width: 768px) {
+    .filter-dropdown {
+        position: fixed;
+        top: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 350px;
+        right: auto;
+        max-height: 80vh; /* Limit height on mobile */
+        overflow-y: auto; /* Add scrolling if needed */
+    }
+}
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .navbar {
         width: calc(100% - 30px); /* Smaller padding on mobile */
         padding: 15px 15px;
     }
+    #property-list {
+        grid-template-columns: 1fr; /* Single column for mobile */
+    }
     
+    .property-card {
+        max-width: 100%; /* Full width on mobile */
+    }
     .nav-links {
         display: none;
         flex-direction: column;
@@ -199,3 +303,4 @@ body {
         width: 70%;
     }
 }
+

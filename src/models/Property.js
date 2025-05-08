@@ -18,6 +18,9 @@ const PropertySchema = new mongoose.Schema({
         lat: { type: Number, },      // Latitude
         lng: { type: Number,  }       // Longitude
     },
+    geoLocationLink: {
+        type:String
+    },
     createdAt: { type: Date, default: Date.now }    // Timestamp
 });
 
