@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             </div>
         `;
         
-        const response = await fetch(`http://localhost:5000/api/properties/${propertyId}`);
+        const response = await fetch(`https://sacbackend.onrender.com/api/properties/${propertyId}`);
     
         if (!response.ok) {
             throw new Error('Property not found');

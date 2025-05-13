@@ -152,10 +152,10 @@ async function fetchProperties(filterParams = {}) {
         
         // Build URL with query parameters
         const queryString = queryParams.toString();
-        let url = "http://localhost:5000/api/properties";
+        let url = "https://sacbackend.onrender.com/api/properties";
         
         if (queryString) {
-            url = `http://localhost:5000/api/properties/filter?${queryString}`;
+            url = `https://sacbackend.onrender.com/api/properties/filter?${queryString}`;
         }
         
         console.log("Fetching from:", url);
