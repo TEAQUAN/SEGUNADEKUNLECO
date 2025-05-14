@@ -15,6 +15,35 @@
             line-height: 1.6;
         }
 
+        .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: sans-serif;
+    }
+
+    .whatsapp-button:hover {
+      background-color: #1ebd5a;
+    }
+
+    .whatsapp-icon {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
         .container {
             width: 85%;
             max-width: 1200px;
@@ -361,7 +390,7 @@
                 Estate Surveyors and Valuers
             </h1>
             <h3> WE FACILITATE HITCH FREE INVESTMENT IN REAL ESTATE</h3>
-            <!-- <a href="Properties.html" class="btn">Explore Properties</a> -->
+             <a href="Properties.html" class="btn">Explore Properties</a> 
         </div>
     </div>
 
@@ -370,7 +399,19 @@
         <input type="text" placeholder="Search for properties...">
         <button type="submit">Search</button>
     </div> -->
+  <a
+    href="https://wa.me/2348138303649?text=Hello%2C%20I%20would%20like%20to%20enquire%20about"
+    class="whatsapp-button"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <!-- WhatsApp SVG Icon -->
+    <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <path d="M16 .396C7.178.396.002 7.571.002 16.396c0 2.891.75 5.703 2.167 8.198L.125 32l7.567-1.983a15.936 15.936 0 0 0 8.308 2.275h.001c8.821 0 15.998-7.177 15.998-16C32 7.571 24.823.396 16 .396zm0 29.229a13.03 13.03 0 0 1-6.637-1.813l-.476-.284-4.494 1.178 1.199-4.381-.31-.449A13.03 13.03 0 0 1 2.969 16.4c0-7.271 5.92-13.188 13.237-13.188 7.32 0 13.244 5.917 13.244 13.188 0 7.271-5.925 13.188-13.244 13.188zm7.465-9.705c-.41-.205-2.417-1.193-2.793-1.33-.375-.137-.647-.205-.92.205-.27.41-1.055 1.33-1.293 1.604-.238.273-.476.308-.886.103-.41-.205-1.732-.638-3.3-2.038-1.221-1.088-2.047-2.433-2.287-2.843-.238-.41-.026-.63.18-.83.184-.182.41-.478.615-.717.205-.24.273-.41.41-.683.137-.273.07-.513-.035-.717-.104-.205-.92-2.21-1.26-3.034-.332-.794-.672-.683-.92-.694l-.783-.013c-.273 0-.717.103-1.092.513-.375.41-1.43 1.39-1.43 3.387 0 1.997 1.464 3.927 1.668 4.198.205.273 2.88 4.41 6.983 6.18.976.42 1.738.672 2.33.858.98.312 1.87.268 2.573.163.785-.117 2.417-.988 2.758-1.94.34-.952.34-1.767.238-1.94-.104-.172-.375-.273-.785-.478z"/>
+    </svg>
 
+    Enquiry
+  </a>
     <!-- About Section -->
     <section class="about">
         <div class="container">
