@@ -106,7 +106,7 @@ function displayPropertyDetails(property) {
                         </div>
                         <div class="spec-item">
                             <p class="spec-value">${property.size ? property.size.toLocaleString() : 'N/A'}</p>
-                            <p class="spec-label">Sq Ft</p>
+                            <p class="spec-label">Sq m</p>
                         </div>
                         <div class="spec-item">
                             <p class="spec-value">${property.yearBuilt || 'N/A'}</p>
@@ -183,7 +183,7 @@ function displayPropertyDetails(property) {
 💵 Price: ${formattedPrice}
 🛏 Bedrooms: ${property.bedrooms || 0}
 🛁 Bathrooms: ${property.bathrooms || 0}
-📐 Size: ${property.size ? property.size.toLocaleString() + ' Sq Ft' : 'N/A'}
+📐 Size: ${property.size ? property.size.toLocaleString() + ' Sq m' : 'N/A'}
 📄 Description: ${property.description || "N/A"}
 
 I'm interested in knowing more about this property.
