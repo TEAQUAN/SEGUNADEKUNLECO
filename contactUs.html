@@ -61,10 +61,26 @@
             z-index: 1000;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
+     .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 60px; /* increased size */
+    width: 60px;
+    border-radius: 50%; /* makes it oval or circular */
+    object-fit: cover;  /* ensures the image fills the shape nicely */
+    border: 2px solid white; /* optional: adds a clean white border */
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
 
         .nav-links {
             list-style: none;
@@ -339,7 +355,11 @@
 <body>
     <!-- Navbar -->
     <div class="navbar">
-        <div class="logo">Segun Adekunle & Co.(SAC)</div>
+        <div class="logo">
+    <img src="./IMAGES/Log Segun Adekunle.jpg" alt="SAC Logo">
+    <span>Segun Adekunle & Co.(SAC)</span>
+</div>
+
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="AboutUs.html">About Us</a></li>
